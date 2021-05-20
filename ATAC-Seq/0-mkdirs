@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+mkdir -p Data/1-trim Data/2-qc
