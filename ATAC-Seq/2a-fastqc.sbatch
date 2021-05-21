@@ -64,6 +64,10 @@ raw2="../Raw/BCAUAGANXX/Merged-lanes/${my_sample}-R2.fastq.gz"
 trimmed1="Data/1-trim/${my_sample}-R1.fastq.gz"
 trimmed2="Data/1-trim/${my_sample}-R2.fastq.gz"
 
+# Trimgalore
+# trimmed1="Data/1-trim/${my_sample}-R1_val_1.fq.gz"
+# trimmed2="Data/1-trim/${my_sample}-R2_val_2.fq.gz"
+
 # Background the first so we can use 4 cores per job
 fastqc --threads=2 $raw1 $raw2 -o Data/2-qc/Raw &
 fastqc --threads=2 $trimmed1 $trimmed2 -o Data/2-qc/Trimmed
