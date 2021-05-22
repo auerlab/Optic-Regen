@@ -25,8 +25,8 @@
 #SBATCH --array=1-14
 # FIXME: Check actual memory use
 #SBATCH --mem=1g
-#SBATCH --output=Data/5-qc-sam/slurm-%A_%a.out
-#SBATCH --error=Data/5-qc-sam/slurm-%A_%a.err
+#SBATCH --output=Data/5-qc-sam/sam-qc-%A_%a.out
+#SBATCH --error=Data/5-qc-sam/sam-qc-%A_%a.err
 
 # For test runs outside SLURM
 : ${SLURM_ARRAY_TASK_ID:=1}

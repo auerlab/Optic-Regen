@@ -1,4 +1,4 @@
 #!/bin/sh -e
 
-mkdir -p Data/1-trim Data/2-qc Data/3-bwa-index Data/4-bwa-mem \
-    Data/5-qc-sam
+cd Data
+mkdir -p 1-trim 2-qc 3-bwa-index 4-bwa-mem 5-qc-sam 6-remove-duplicates
