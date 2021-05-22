@@ -40,10 +40,10 @@
 
 # Default if not set by SLURM or user
 : ${SLURM_ARRAY_TASK_ID:=1}
-: ${SLURM_CPUS_PER_TASK:=2}
+export SLURM_ARRAY_TASK_ID
+. ./my-sample
 
-samples="0ATAC-1 0ATAC-2 0ATAC-3 12ATAC-1 12ATAC-2 12ATAC-3 2ATAC-1 2ATAC-2 2ATAC-3 4ATAC-1 4ATAC-2 4ATAC-3 7ATAC-2 7ATAC-3"
-my_sample=$(printf "$samples\n" | cut -d ' ' -f ${SLURM_ARRAY_TASK_ID})
+: ${SLURM_CPUS_PER_TASK:=2}
 
 # Document software versions used for publication
 if [ $SLURM_ARRAY_TASK_ID = 1 ]; then
@@ -52,9 +52,6 @@ if [ $SLURM_ARRAY_TASK_ID = 1 ]; then
 fi
 
 mkdir -p Data/2-qc/Raw Data/2-qc/Trimmed
-
-# One iteration if running under SLURM, all iterations otherwise
-printf "Task $SLURM_ARRAY_TASK_ID running $my_sample on $(hostname)...\n"
 
 # Raw files from sequencing center
 raw1="../Raw/BCAUAGANXX/Merged-lanes/${my_sample}-R1.fastq.gz"

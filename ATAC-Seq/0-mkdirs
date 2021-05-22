@@ -1,3 +1,4 @@
 #!/bin/sh -e
 
-mkdir -p Data/1-trim Data/2-qc Data/3-bwa-index
+mkdir -p Data/1-trim Data/2-qc Data/3-bwa-index Data/4-bwa-mem \
+    Data/5-qc-sam
