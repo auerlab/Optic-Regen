@@ -10,8 +10,8 @@
 ##########################################################################
 
 #SBATCH --mem=100
-#SBATCH --output=Data/1-trim/1a-merge-%A_%a.out
-#SBATCH --error=Data/1-trim/1a-merge-%A_%a.err
+#SBATCH --output=Data/1-trim/1a-merge-%j.out
+#SBATCH --error=Data/1-trim/1a-merge-%j.err
 
 usage()
 {
@@ -38,19 +38,19 @@ mkdir -p $merged
 # ATAC-Seq
 for day in 0 2 4 7 12; do
     for rep in 1 2 3; do
-	for end in 1 2; do
-	    atac_merged=$merged/${day}ATAC-${rep}-R${end}.fastq.gz
+	for paired_end in 1 2; do
+	    atac_merged=$merged/${day}ATAC-${rep}-R${paired_end}.fastq.gz
 	    if [ ! -e $atac_merged ]; then
 		echo $atac_merged
 		# No 7ATAC-1, so remove empty redirect output after failure
-		if ! cat ${day}ATAC-${rep}_*_R${end}*.fastq.gz > $atac_merged; then
+		if ! cat ${day}ATAC-${rep}_*_R${paired_end}*.fastq.gz > $atac_merged; then
 		    rm $atac_merged
 		fi
 	    fi
-	    rna_merged=$merged/${day}RNA-${rep}-R${end}.fastq.gz
+	    rna_merged=$merged/${day}RNA-${rep}-R${paired_end}.fastq.gz
 	    if [ ! -e $rna_merged ]; then
 		echo $rna_merged
-		cat ${day}RNA${rep}_*_R${end}*.fastq.gz > $rna_merged
+		cat ${day}RNA${rep}_*_R${paired_end}*.fastq.gz > $rna_merged
 	    fi
 	done
     done
