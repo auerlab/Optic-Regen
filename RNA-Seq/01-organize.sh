@@ -57,7 +57,6 @@ done
 ##############################################################################
 
 cd Data
-rm -rf Raw-renamed
 mkdir -p Raw-renamed
 cd Raw-renamed
 sample=1
@@ -67,7 +66,7 @@ for day in 0 2 4 7 12; do
 	for read in 1 2; do
 	    orig=$(ls ../../../Raw/BCAUAGANXX/${day}RNA${rep}_*_R${read}*.fastq.gz)
 	    merged=${day}RNA-${rep}-merged-R${read}.fastq.gz
-	    readable=sample-$sample-rep$rep-time$time_step-R$read.fastq.gz
+	    readable=sample$sample-rep$rep-time$time_step-R$read.fastq.gz
 	    printf "$readable -> $merged\n"
 	    if [ ! -e $merged ]; then
 		cat $orig > $merged
