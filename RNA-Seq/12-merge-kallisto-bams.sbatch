@@ -38,7 +38,7 @@ input1=$(echo $input_dir/sample*-rep1-time$time/pseudoalignments.bam)
 input2=$(echo $input_dir/sample*-rep2-time$time/pseudoalignments.bam)
 input3=$(echo $input_dir/sample*-rep3-time$time/pseudoalignments.bam)
 
-output=$output_dir/chondro-time$time.bam
+output=$output_dir/time$time.bam
 
 set -x
 samtools merge -o $output $input1 $input2 $input3
