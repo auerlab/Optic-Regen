@@ -56,7 +56,7 @@ pwd
 input1=$(ls Data/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R1*)
 input2=$(ls Data/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R2*)
 base=$(basename $input1)
-stem=${base%%-R*.fastq.xz}
+stem=${base%%-R*.fastq.gz}
 
 ##############################################################################
 # TrimGalore is just a wrapper around cutadapt and it cannot cut a fixed
