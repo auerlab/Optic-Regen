@@ -11,7 +11,7 @@
 #       every program with one environment.)
 #############################################################################
 
-# 3 time points
+# Set job array to number of time points
 #SBATCH --array=1-3
 # Memory requirements can only be determined by trial and error.
 # Run a sample job and monitor closely in "top" or rununder a tool that

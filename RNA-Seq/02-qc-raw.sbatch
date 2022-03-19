@@ -17,6 +17,7 @@
 #   2019-09-13  Jason Bacon Begin
 ##########################################################################
 
+# Set job array to number of samples
 # Each invocation of this script will run 2 fastqc processes, forward
 # and reverse
 #SBATCH --array=1-15
