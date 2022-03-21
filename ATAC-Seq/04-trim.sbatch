@@ -36,7 +36,7 @@
 # half a core each
  
 # Set job array to number of samples
-#SBATCH --array=1-15%8
+#SBATCH --array=1-14%7
 #SBATCH --cpus-per-task=2   # 3 processes, but not full CPU utilization
 # Memory requirements can only be determined by trial and error.
 # Run a sample job and monitor closely in "top" or rununder a tool that
@@ -104,7 +104,7 @@ output2=Data/04-trim/${stem}-R2.fastq$suffix
 export GZIP=-1
 
 # Discovered using fastq-scum
-adapter=AGATCGGAAGAG
+adapter=CTGTCTCTTATA
 
 # fastq-trim is 2.5x faster with 1 core than cutadapt with 2 cores
 # Our reads use the default Illumina universal adatper,
