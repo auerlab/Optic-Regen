@@ -76,9 +76,13 @@ for day in 0 2 4 7 12; do
 		    cat $orig > $merged
 		fi
 		ln -sf $merged $readable
+		# Avoid skipping sample=10 due to missing files
+		# Otherwise, this could be done outside this loop
+		if [ $read = 2 ]; then
+		    sample=$((sample + 1))
+		fi
 	    fi
 	done
-	sample=$((sample + 1))
     done
     time_step=$((time_step + 1))
 done
