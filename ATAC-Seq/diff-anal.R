@@ -29,7 +29,7 @@ library(DESeq2)
 pause <- function()
 {
     # Change to TRUE for interactive run
-    if ( FALSE )
+    if ( TRUE )
     {
 	cat("Press Enter to continue...")
 	invisible(b <- scan("stdin", character(), nlines=1, quiet=TRUE))
@@ -78,20 +78,24 @@ print(Peaks)
 
 # dir uses regular expressions, not globbing patterns
 files=dir("../09-remove-duplicates/", pattern="-.*-nodup-mapq1.bam$")
-#print("files")
-#print(files)
+print("files")
+print(files)
+pause()
 
 # Extract rep and time portions of filename
 split_files <- strsplit(files, split="-", fixed=TRUE)
-#print(split_files)
+print(split_files)
+pause()
 
-rep <- lapply(split_files, function(x) x[3]) %>% unlist() #%>% unique()
-#print("rep")
-#print(rep)
+rep <- lapply(split_files, function(x) x[2]) %>% unlist() %>% unique()
+print("rep")
+print(rep)
+pause()
 
-time <- lapply(split_files, function(x) x[4]) %>% unlist() #%>% unique()
-#print("time")
-#print(time)
+time <- lapply(split_files, function(x) x[3]) %>% unlist() %>% unique() %>% sort()
+print("time")
+print(time)
+pause()
 
 SampleID <- lapply(split_files, function(x) paste0(x[1], '-', x[2])) %>% unlist() #%>% unique()
 print("SampleID")
@@ -224,6 +228,7 @@ colData$time_factor <- factor(colData$Condition)
 print("colData$time_factor:")
 print(colData$time_factor)
 pause()
+quit()
 
 print("GRanges(rowData_pvalsort):")
 print(GRanges(rowData_pvalsort))
