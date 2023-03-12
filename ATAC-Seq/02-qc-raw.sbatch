@@ -38,16 +38,16 @@ fastqc --version
 pwd
 
 # Raw files from sequencing center
-raw1=$(ls Data/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R1*.fastq.gz)
-raw2=$(ls Data/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R2*.fastq.gz)
+raw1=$(ls Results/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R1*.fastq.gz)
+raw2=$(ls Results/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R2*.fastq.gz)
 
 # Filename stems for fastqc output
 stem_raw1=$(basename ${raw1%.fastq.gz})
 stem_raw2=$(basename ${raw2%.fastq.gz})
 
 # Background the first three to run 4 jobs in parallel
-zcat $raw1 | fastqc -o Data/02-qc-raw stdin:$stem_raw1 &
-zcat $raw2 | fastqc -o Data/02-qc-raw stdin:$stem_raw2
+zcat $raw1 | fastqc -o Results/02-qc-raw stdin:$stem_raw1 &
+zcat $raw2 | fastqc -o Results/02-qc-raw stdin:$stem_raw2
 
 # Make sure backgrounded job completes before terminating script
 wait

@@ -43,7 +43,7 @@ pwd
 ref_file=$(../RNA-Seq/Reference/genome-filename.sh)
 
 # One iteration if running under SLURM, all iterations otherwise
-cd Data/08-bwa-mem
+cd Results/08-bwa-mem
 printf "Running task $SLURM_ARRAY_TASK_ID...\n"
 infile1=$(ls ../04-trim/*sample$SLURM_ARRAY_TASK_ID-*-R1.fastq.gz)
 infile2=$(ls ../04-trim/*sample$SLURM_ARRAY_TASK_ID-*-R2.fastq.gz)

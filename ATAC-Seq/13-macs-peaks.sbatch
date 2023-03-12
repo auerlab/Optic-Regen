@@ -32,6 +32,6 @@ printf "Peak calling, merging replicates across all time points, calling peaks..
 # for the latest build?  Nothing in MACS2 docs about it.
 set -x
 macs2 callpeak --nomodel \
-    -t Data/09-remove-duplicates/*-mapq1.bam \
+    -t Results/09-remove-duplicates/*-mapq1.bam \
     -f BAMPE -g 1.37e+09 --call-summits -n ATAC \
-    --keep-dup all --outdir Data/13-macs-peaks
+    --keep-dup all --outdir Results/13-macs-peaks

@@ -57,8 +57,8 @@ uname -a
 fastq-trim --version
 pwd
 
-input1=$(ls Data/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R1*)
-input2=$(ls Data/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R2*)
+input1=$(ls Results/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R1*)
+input2=$(ls Results/Raw-renamed/*sample${SLURM_ARRAY_TASK_ID}-*R2*)
 base=$(basename $input1)
 stem=${base%%-R*.fastq.gz}
 
@@ -67,10 +67,10 @@ stem=${base%%-R*.fastq.gz}
 # number of bases at the same time as trimming adapters ( -u and -U in
 # cutadapt ), so we run cutadapt directly.
 #
-# trim_galore --illumina --stringency 3 -q 20 --paired -o Data/04-trim \
-#    $input1 $input2 > Data/04-trim/${stem}-trash.out
-# trim_galore --illumina --stringency 3 -q 20 --paired --trim1 -o Data/04-trim-trim1 \
-#    $input1 $input2 > Data/04-trim-trim1/${stem}-trash.out
+# trim_galore --illumina --stringency 3 -q 20 --paired -o Results/04-trim \
+#    $input1 $input2 > Results/04-trim/${stem}-trash.out
+# trim_galore --illumina --stringency 3 -q 20 --paired --trim1 -o Results/04-trim-trim1 \
+#    $input1 $input2 > Results/04-trim-trim1/${stem}-trash.out
 #
 # Command from trim_galore log:
 #   cutadapt -j 1 -e 0.1 -q 20 -O 3 -a AGATCGGAAGAGC
@@ -95,8 +95,8 @@ stem=${base%%-R*.fastq.gz}
 #
 # suffix=.xz
 suffix=.gz
-output1=Data/04-trim/${stem}-R1.fastq$suffix
-output2=Data/04-trim/${stem}-R2.fastq$suffix
+output1=Results/04-trim/${stem}-R1.fastq$suffix
+output2=Results/04-trim/${stem}-R2.fastq$suffix
 
 # Maximize compression throughput so gzip is not a bottleneck.  Can determine
 # performance from fastq-trim CPU % in job-top.

@@ -30,8 +30,8 @@ uname -a
 samtools --version
 pwd
 
-input_dir=Data/09-remove-duplicates
-output_dir=Data/12-merge-bams
+input_dir=Results/09-remove-duplicates
+output_dir=Results/12-merge-bams
 time=$SLURM_ARRAY_TASK_ID
 
 # Example: sample9-rep3-time3-nodup-mapq1.bam
