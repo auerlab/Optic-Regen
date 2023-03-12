@@ -30,8 +30,8 @@ uname -a
 samtools --version
 pwd
 
-input_dir=Data/09-kallisto-quant
-output_dir=Data/12-merge-kallisto-bams
+input_dir=Results/09-kallisto-quant
+output_dir=Results/12-merge-kallisto-bams
 time=$SLURM_ARRAY_TASK_ID
 
 input1=$(echo $input_dir/sample*-rep1-time$time/pseudoalignments.bam)

@@ -35,11 +35,11 @@ if [ $# != 0 ]; then
     usage
 fi
 
-mkdir -p Data Logs
+mkdir -p Results Logs
 scripts=$(ls 0[2-9]-* 1[0-9]-*)
 for script in $scripts; do
     stage=${script%.*}
-    mkdir -p Data/$stage Logs/$stage
+    mkdir -p Results/$stage Logs/$stage
 done
 
 ##############################################################################
@@ -56,7 +56,7 @@ done
 #
 ##############################################################################
 
-cd Data
+cd Results
 mkdir -p Raw-merged Raw-renamed
 cd Raw-renamed
 sample=1

@@ -18,8 +18,8 @@ genome=$(Reference/genome-filename.sh)
 chromosomes=$(../Common/chrom-list.sh)
 
 # Chromosome files
-mkdir -p Data/07-reference
-cd Data/07-reference
+mkdir -p Results/07-reference
+cd Results/07-reference
 for chromosome in $chromosomes; do
     file=$species_prefix$build.dna.chromosome.$chromosome.fa.gz
     if [ ! -e $file ]; then

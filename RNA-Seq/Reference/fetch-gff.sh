@@ -12,7 +12,7 @@ gff=$(Reference/gff-filename.sh)
 # GFF
 # Can't guarantee this file or the chromosome files will always be available.
 # You may need to edit this.
-cd Data/07-reference
+cd Results/07-reference
 if [ ! -e $gff.gz ]; then
     printf "Fetching $gff.gz...\n"
     $fetch ftp://ftp.ensembl.org/pub/release-$release/gff3/$species_dir/$gff.gz

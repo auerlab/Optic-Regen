@@ -41,7 +41,7 @@ release=$(../Common/genome-release.sh)
 genome=$(Reference/genome-filename.sh)
 
 # samtools sort dumps temp files in CWD
-cd Data/16-hisat2-align
+cd Results/16-hisat2-align
 
 # hisat2 can't handle xz.
 # Convert xz to gz rather than raw to reduce NFS load from compute nodes

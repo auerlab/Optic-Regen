@@ -38,5 +38,5 @@ pwd
 # One iteration if running under SLURM, all iterations otherwise
 printf "Running task $SLURM_ARRAY_TASK_ID...\n"
 
-infile=Data/16-hisat2-align/sample$SLURM_ARRAY_TASK_ID*.bam
-fastqc $infile -o Data/17-qc-hisat2
+infile=Results/16-hisat2-align/sample$SLURM_ARRAY_TASK_ID*.bam
+fastqc $infile -o Results/17-qc-hisat2

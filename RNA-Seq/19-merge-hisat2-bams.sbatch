@@ -30,8 +30,8 @@ uname -a
 samtools --version
 pwd
 
-input_dir=Data/16-hisat2-align
-output_dir=Data/17-merge-hisat2-bams
+input_dir=Results/16-hisat2-align
+output_dir=Results/17-merge-hisat2-bams
 time=$SLURM_ARRAY_TASK_ID
 
 input1=$(echo $input_dir/sample*-rep1-time$time.bam)
