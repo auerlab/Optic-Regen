@@ -65,6 +65,10 @@ sample=1
 time_step=1
 for day in 0 2 4 7 12; do
     for rep in 1 2 3; do
+	# Day 7, rep 1 sample was discarded.  Low quality maybe?
+	if [ $day = 7 ] && [ $rep = 1 ]; then
+	    break
+	fi
 	for read in 1 2; do
 	    orig=$(ls ../../../Raw/BCAUAGANXX/${day}ATAC-${rep}_*_R${read}*.fastq.gz) || true
 	    # Some ATAC-Seq samples ommitted.  Discarded for quality issues.
