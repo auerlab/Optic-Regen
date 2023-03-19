@@ -12,5 +12,7 @@ export LC_ALL=en_US.UTF-8
 
 cd Results/06-multiqc-trimmed
 rm -rf *
-$srun multiqc --version > multiqc-version.txt 2>&1
-$srun multiqc ../05-qc-trimmed
+
+$srun multiqc --version > ../../Logs/06-multiqc-trimmed/multiqc-version.txt 2>&1
+$srun multiqc ../05-qc-trimmed 2>&1 | tee ../../Logs/06-multiqc-trimmed/multiqc.out
+
