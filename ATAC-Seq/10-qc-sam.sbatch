@@ -6,7 +6,7 @@
 #
 #   Usage:
 #       SLURM cluster:
-#           sbatch 10-qc.sbatch
+#           sbatch 10-qc-sam.sbatch
 #
 #   History:
 #       Based on the work of Dr. Andrea Rau:

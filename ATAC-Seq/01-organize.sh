@@ -65,28 +65,27 @@ sample=1
 time_step=1
 for day in 0 2 4 7 12; do
     for rep in 1 2 3; do
-	# Day 7, rep 1 sample was discarded.  Low quality maybe?
-	if [ $day = 7 ] && [ $rep = 1 ]; then
-	    break
+	# Day 7, rep 1 sample was discarded for undocumented reasons.
+	if [ $day != 7 ] || [ $rep != 1 ]; then
+	    for read in 1 2; do
+		orig=$(ls ../../../Raw/BCAUAGANXX/${day}ATAC-${rep}_*_R${read}*.fastq.gz) || true
+		# Some ATAC-Seq samples ommitted.  Discarded for quality issues.
+		if [ -n "$orig" ]; then
+		    merged=../Raw-merged/${day}ATAC-${rep}-merged-R${read}.fastq.gz
+		    readable=sample$sample-rep$rep-time$time_step-R$read.fastq.gz
+		    printf "$readable -> $merged\n"
+		    if [ ! -e $merged ]; then
+			cat $orig > $merged
+		    fi
+		    ln -sf $merged $readable
+		    # Avoid skipping sample=10 due to missing files
+		    # Otherwise, this could be done outside this loop
+		    if [ $read = 2 ]; then
+			sample=$((sample + 1))
+		    fi
+		fi
+	    done
 	fi
-	for read in 1 2; do
-	    orig=$(ls ../../../Raw/BCAUAGANXX/${day}ATAC-${rep}_*_R${read}*.fastq.gz) || true
-	    # Some ATAC-Seq samples ommitted.  Discarded for quality issues.
-	    if [ -n "$orig" ]; then
-		merged=../Raw-merged/${day}ATAC-${rep}-merged-R${read}.fastq.gz
-		readable=sample$sample-rep$rep-time$time_step-R$read.fastq.gz
-		printf "$readable -> $merged\n"
-		if [ ! -e $merged ]; then
-		    cat $orig > $merged
-		fi
-		ln -sf $merged $readable
-		# Avoid skipping sample=10 due to missing files
-		# Otherwise, this could be done outside this loop
-		if [ $read = 2 ]; then
-		    sample=$((sample + 1))
-		fi
-	    fi
-	done
     done
     time_step=$((time_step + 1))
 done

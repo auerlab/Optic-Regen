@@ -46,7 +46,7 @@
 #SBATCH --error=Logs/04-trim/slurm-%A_%a.err
 
 # Set a default value for testing outside the SLURM environment
-: ${SLURM_ARRAY_TASK_ID:=1}
+: ${SLURM_ARRAY_TASK_ID:=10}
 
 # Document software versions used for publication
 uname -a
