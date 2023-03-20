@@ -19,8 +19,8 @@
 # top showed a steady 25M virtual, 12 res with a spike to 42/30 at the
 # end (samtools index?) on FreeBSD 13
 #SBATCH --mem=50m
-#SBATCH --output=Logs/17-merge-hisat2-bams/slurm-%A_%a.out
-#SBATCH --error=Logs/17-merge-hisat2-bams/slurm-%A_%a.err
+#SBATCH --output=Logs/19-merge-hisat2-bams/slurm-%A_%a.out
+#SBATCH --error=Logs/19-merge-hisat2-bams/slurm-%A_%a.err
 
 # Set a default value for testing outside the SLURM environment
 : ${SLURM_ARRAY_TASK_ID:=4}
@@ -31,7 +31,7 @@ samtools --version
 pwd
 
 input_dir=Results/16-hisat2-align
-output_dir=Results/17-merge-hisat2-bams
+output_dir=Results/19-merge-hisat2-bams
 time=$SLURM_ARRAY_TASK_ID
 
 input1=$(echo $input_dir/sample*-rep1-time$time.bam)

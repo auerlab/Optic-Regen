@@ -25,8 +25,8 @@
 #SBATCH --array=1-15
 # FIXME: Check actual memory use
 #SBATCH --mem=1g
-#SBATCH --output=Logs/10-qc-sam/slurm-%A_%a.out
-#SBATCH --error=Logs/10-qc-sam/slurm-%A_%a.err
+#SBATCH --output=Logs/10-qc-kallisto/slurm-%A_%a.out
+#SBATCH --error=Logs/10-qc-kallisto/slurm-%A_%a.err
 
 : ${SLURM_ARRAY_TASK_ID:=1}
 
@@ -39,4 +39,4 @@ pwd
 printf "Running task $SLURM_ARRAY_TASK_ID...\n"
 
 infile=Results/09-kallisto-quant/*sample$SLURM_ARRAY_TASK_ID*/pseudoalignments.bam
-fastqc $infile -o Results/10-qc-sam
+fastqc $infile -o Results/10-qc-kallisto

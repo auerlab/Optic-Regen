@@ -12,5 +12,7 @@ export LC_ALL=en_US.UTF-8
 
 cd Results/18-multiqc-hisat2
 rm -rf *
-$srun multiqc --version > multiqc-version.txt 2>&1
-$srun multiqc ../17-qc-hisat2
+
+$srun multiqc --version > ../../Logs/18-multiqc-hisat2/multiqc-version.txt 2>&1
+$srun multiqc ../17-qc-hisat2 2>&1 | tee ../../Logs/18-multiqc-hisat2/multiqc.out
+
