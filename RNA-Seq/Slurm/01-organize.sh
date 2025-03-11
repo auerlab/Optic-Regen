@@ -64,7 +64,7 @@ time_step=1
 for day in 0 2 4 7 12; do
     for rep in 1 2 3; do
 	for read in 1 2; do
-	    orig=$(ls ../../../Raw/BCAUAGANXX/${day}RNA${rep}_*_R${read}*.fastq.gz)
+	    orig=$(ls ../../../../Raw/BCAUAGANXX/${day}RNA${rep}_*_R${read}*.fastq.gz)
 	    merged=../Raw-merged/${day}RNA-${rep}-merged-R${read}.fastq.gz
 	    readable=sample$sample-rep$rep-time$time_step-R$read.fastq.gz
 	    printf "$readable -> $merged\n"
