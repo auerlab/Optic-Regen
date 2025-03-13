@@ -5,9 +5,9 @@
 #   to work with GFF3.  Use the equivalent gff3 script instead.
 ##########################################################################
 
-fetch=$(../Common/find-fetch.sh)
-release=$(../Common/genome-release.sh)
-species_dir=$(../Common/species-dir.sh)
+fetch=$(../../Common/find-fetch.sh)
+release=$(../../Common/genome-release.sh)
+species_dir=$(../../Common/species-dir.sh)
 gtf=$(Reference/gtf-filename.sh)
 
 # GTF

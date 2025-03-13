@@ -10,12 +10,12 @@ fi
 # Need GTF for kallisto quant --genomebam in any case
 Reference/fetch-gtf.sh
 
-fetch=$(../Common/find-fetch.sh)
-build=$(../Common/genome-build.sh)
-species_prefix=$(../Common/species-prefix.sh)
-species_dir=$(../Common/species-dir.sh)
-release=$(../Common/genome-release.sh)
-awk=$(../Common/find-awk.sh)
+fetch=$(../../Common/find-fetch.sh)
+build=$(../../Common/genome-build.sh)
+species_prefix=$(../../Common/species-prefix.sh)
+species_dir=$(../../Common/species-dir.sh)
+release=$(../../Common/genome-release.sh)
+awk=$(../../Common/find-awk.sh)
 transcriptome=$(Reference/transcriptome-filename.sh)
 
 # Can't guarantee this file will always be available.

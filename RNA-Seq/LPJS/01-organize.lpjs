@@ -20,20 +20,10 @@
 #   2021-09-25  Jason Bacon Begin
 ##########################################################################
 
-usage()
-{
-    printf "Usage: $0\n"
-    exit 1
-}
-
-
-##########################################################################
-#   Main
-##########################################################################
-
-if [ $# != 0 ]; then
-    usage
-fi
+#lpjs jobs 1
+#lpjs processors-per-job 1
+#lpjs threads-per-process processors-per-job
+#lpjs pmem-per-processor 1GiB
 
 ##############################################################################
 # RNA-Seq:
@@ -49,23 +39,19 @@ fi
 #
 ##############################################################################
 
-mkdir -p Results
-cd Results
-mkdir -p Raw-merged Raw-renamed
-cd Raw-renamed
+mkdir -p Results/01-organize/Raw-merged Results/01-organize/Raw-renamed
+cd Results/01-organize/Raw-renamed
 sample=1
 time_step=1
 for day in 0 2 4 7 12; do
     for rep in 1 2 3; do
 	for read in 1 2; do
-	    orig=$(ls ../../../../Raw/BCAUAGANXX/${day}RNA${rep}_*_R${read}*.fastq.gz)
+	    orig=$(ls ../../../../../Raw/BCAUAGANXX/${day}RNA${rep}_*_R${read}*.fastq.gz)
 	    merged=../Raw-merged/${day}RNA-${rep}-merged-R${read}.fastq.gz
 	    readable=sample$sample-rep$rep-time$time_step-R$read.fastq.gz
 	    printf "$readable -> $merged\n"
-	    if [ ! -e $merged ]; then
-		printf "Merging $orig to $merged...\n"
-		cat $orig > $merged
-	    fi
+	    printf "Merging $orig to $merged...\n"
+	    cat $orig > $merged
 	    ln -sf $merged $readable
 	done
 	sample=$((sample + 1))

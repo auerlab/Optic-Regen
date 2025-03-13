@@ -9,13 +9,13 @@ EOM
     exit 1
 fi
 
-fetch=$(../Common/find-fetch.sh)
-species_prefix=$(../Common/species-prefix.sh)
-species_dir=$(../Common/species-dir.sh)
-build=$(../Common/genome-build.sh)
-release=$(../Common/genome-release.sh)
+fetch=$(../../Common/find-fetch.sh)
+species_prefix=$(../../Common/species-prefix.sh)
+species_dir=$(../../Common/species-dir.sh)
+build=$(../../Common/genome-build.sh)
+release=$(../../Common/genome-release.sh)
 genome=$(Reference/genome-filename.sh)
-chromosomes=$(../Common/chrom-list.sh)
+chromosomes=$(../../Common/chrom-list.sh)
 
 # Chromosome files
 mkdir -p Results/07-reference

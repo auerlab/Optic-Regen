@@ -8,9 +8,9 @@ if [ $0 != $proper_name ]; then
 fi
 
 Reference/fetch-gtf.sh
-fetch=$(../Common/find-fetch.sh)
-build=$(../Common/genome-build.sh)
-release=$(../Common/genome-release.sh)
+fetch=$(../../Common/find-fetch.sh)
+build=$(../../Common/genome-build.sh)
+release=$(../../Common/genome-release.sh)
 transcriptome=$(Reference/transcriptome-filename.sh)
 gtf=$(Reference/gtf-filename.sh)
 genome=$(Reference/genome-filename.sh)

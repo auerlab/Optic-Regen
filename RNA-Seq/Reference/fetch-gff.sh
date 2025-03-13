@@ -4,9 +4,9 @@
 #   GFF is used by downstream analysis, such as peak classification
 ##########################################################################
 
-fetch=$(../Common/find-fetch.sh)
-release=$(../Common/genome-release.sh)
-species_dir=$(../Common/species-dir.sh)
+fetch=$(../../Common/find-fetch.sh)
+release=$(../../Common/genome-release.sh)
+species_dir=$(../../Common/species-dir.sh)
 gff=$(Reference/gff-filename.sh)
 
 # GFF

@@ -23,21 +23,20 @@
 #lpjs jobs 15
 #lpjs processors-per-job 2
 #lpjs threads-per-process processors-per-job
-#lpjs pmem-per-processor 1g
-
-# Set a default value for testing outside the SLURM environment
-: ${LPJS_ARRAY_INDEX:=1}
+#lpjs pmem-per-processor 1GiB
 
 # Document software versions used for publication
 uname -a
-fastqc --version
+#fastqc --version
 pwd
 
+# Set a default value for testing outside the SLURM environment
+: ${LPJS_ARRAY_INDEX:=1}
 sample=$LPJS_ARRAY_INDEX
 
 # Raw files from sequencing center
-raw1=$(ls Results/Raw-renamed/*sample${sample}-*R1*.fastq.gz)
-raw2=$(ls Results/Raw-renamed/*sample${sample}-*R2*.fastq.gz)
+raw1=$(ls Results/01-organize/Raw-renamed/*sample${sample}-*R1*.fastq.gz)
+raw2=$(ls Results/01-organize/Raw-renamed/*sample${sample}-*R2*.fastq.gz)
 
 # Filename stems for fastqc output
 stem_raw1=$(basename ${raw1%.fastq.gz})
