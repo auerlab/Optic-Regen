@@ -1,4 +1,5 @@
 .*.bak
+.lpjs*-marker
 Results
-Logs
+LPJS-logs
 Raw
