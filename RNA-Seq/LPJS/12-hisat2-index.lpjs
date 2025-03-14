@@ -15,12 +15,10 @@
 #   2021-11-24  Jason Bacon Begin
 ##########################################################################
 
-#SBATCH --mem=1g
-#SBATCH --output=Logs/15-hisat2-index/slurm-%A.out
-#SBATCH --error=Logs/15-hisat2-index/slurm-%A.err
-
-# Set a default value for testing outside the SLURM environment
-: ${SLURM_ARRAY_TASK_ID:=1}
+#lpjs jobs 1
+#lpjs processors-per-job 1
+#lpjs threads-per-process processors-per-job
+#lpjs pmem-per-processor 1GiB
 
 # Document software versions used for publication
 uname -a
@@ -28,11 +26,13 @@ hisat2 --version
 samtools --version
 pwd
 
-# Run hisat2-build on a copy in 15-hisat2-index so it will put the .ht2
+output_dir=Results/12-hisat2-index
+mkdir -p $output_dir
+# Run hisat2-build on a copy in 12-hisat2-index so it will put the .ht2
 # files there
 genome=$(Reference/genome-filename.sh)
-ln -f Results/07-reference/$genome Results/15-hisat2-index
-genome=Results/15-hisat2-index/$genome
+ln -f Results/07-reference/$genome $output_dir
+genome=$output_dir/$genome
 printf "Using reference $genome...\n"
 
 if [ ! -e $genome.8.ht2 ]; then
@@ -43,4 +43,4 @@ if [ ! -e $genome.fai ]; then
     printf "Building $genome.fai...\n"
     samtools faidx $genome
 fi
-ls Results/15-hisat2-index
+ls $output_dir
