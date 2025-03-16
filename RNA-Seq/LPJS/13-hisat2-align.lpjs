@@ -16,7 +16,7 @@
 ##########################################################################
 
 #lpjs jobs 15
-#lpjs processors-per-job 2
+#lpjs processors-per-job 4
 #lpjs threads-per-process processors-per-job
 #lpjs pmem-per-processor 625MiB
 
@@ -38,7 +38,7 @@ release=$(../../Common/genome-release.sh)
 genome=$(Reference/genome-filename.sh)
 
 # samtools sort dumps temp files in CWD
-output_dir=Results/16-hisat2-align
+output_dir=Results/13-hisat2-align
 mkdir -p $output_dir
 cd $output_dir
 
@@ -51,15 +51,17 @@ cd $output_dir
 # --fast minimizes CPU usage in exchange for larger files
 zst1=$(echo ../04-trim/*sample${sample}-*-R1.fastq.zst)
 zst2=$(echo ../04-trim/*sample${sample}-*-R2.fastq.zst)
-gz1=$(echo ../04-trim/*sample${sample}-*-R1.fastq.gz)
-gz2=$(echo ../04-trim/*sample${sample}-*-R2.fastq.gz)
-gzb=$(basename $gz1)
-bam=${gzb%-R*}.bam
+gz1=${zst1%.zst}.gz
+gz2=${zst2%.zst}.gz
+gz1=$(basename $gz1)
+gz2=$(basename $gz2)
+bam=${gz1%-R*}.bam
 
 set -x
 test -e $gz1 || zstdcat $zst1 | gzip --fast --stdout > $gz1 &
 test -e $gz2 || zstdcat $zst2 | gzip --fast --stdout > $gz2
 wait
-hisat2 --threads $LPJS_THREADS_PER_PROCESS -x ../12-hisat2-index/$genome \
-    -1 $gz1 -2 $gz2 | samtools sort > $bam
+# hisat2 --threads takes *additional* threads
+hisat2 --threads $(($LPJS_THREADS_PER_PROCESS - 1)) \
+    -x ../12-hisat2-index/$genome -1 $gz1 -2 $gz2 | samtools sort > $bam
 samtools index $bam
