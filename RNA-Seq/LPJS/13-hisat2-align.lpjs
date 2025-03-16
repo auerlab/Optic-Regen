@@ -61,7 +61,10 @@ set -x
 test -e $gz1 || zstdcat $zst1 | gzip --fast --stdout > $gz1 &
 test -e $gz2 || zstdcat $zst2 | gzip --fast --stdout > $gz2
 wait
-# hisat2 --threads takes *additional* threads
+# Use 1 processor for samtools and N - 1 for hisat2
+# FIXME: For some odd reason, only 1 thread is being launched
+# Same on albacore and barracuda: top shows THR=1
+# CNC-EMDIFF threads work as expected
 hisat2 --threads $(($LPJS_THREADS_PER_PROCESS - 1)) \
     -x ../12-hisat2-index/$genome -1 $gz1 -2 $gz2 | samtools sort > $bam
 samtools index $bam
