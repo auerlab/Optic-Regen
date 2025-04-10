@@ -42,20 +42,26 @@
 
 mkdir -p Results/01-organize/Raw-merged Results/01-organize/Raw-renamed
 cd Results/01-organize/Raw-renamed
+pipe=$(mktemp ./pipeXXXXX)
+rm $pipe
+mkfifo $pipe
 sample=1
 time_step=1
 for day in 0 2 4 7 12; do
     for rep in 1 2 3; do
 	for read in 1 2; do
-	    orig=$(ls ../../../../../Raw/BCAUAGANXX/${day}RNA${rep}_*_R${read}*.fastq.gz)
-	    merged=../Raw-merged/${day}RNA-${rep}-merged-R${read}.fastq.gz
-	    readable=sample$sample-rep$rep-time$time_step-R$read.fastq.gz
+	    orig=$(ls ../../../../../Raw/BCAUAGANXX/${day}RNA${rep}_*_R${read}*.fastq.xz)
+	    merged=../Raw-merged/${day}RNA-${rep}-merged-R${read}.fastq.zst
+	    readable=sample$sample-rep$rep-time$time_step-R$read.fastq.zst
 	    printf "$readable -> $merged\n"
 	    printf "Merging $orig to $merged...\n"
-	    cat $orig > $merged
+	    zstd -c $pipe > $merged &
+	    xzcat $orig > $pipe
 	    ln -sf $merged $readable
+	    wait
 	done
 	sample=$((sample + 1))
     done
     time_step=$((time_step + 1))
 done
+rm $pipe
